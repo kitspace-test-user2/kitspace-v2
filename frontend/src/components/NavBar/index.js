@@ -233,10 +233,14 @@ const LogoutButton = () => {
   const { push, reload } = useRouter()
   const { logout } = useContext(AuthContext)
 
-  const onClick = () => {
-    logout().then(success => {
-      if (success) push('/login').then(reload)
-    })
+  const onClick = async () => {
+    const loggedOut = await logout()
+
+    if (loggedOut) {
+      // After logging out redirect to the `/login` page and open the `Login` pane
+      await push('/login?1')
+      reload()
+    }
   }
 
   return (
