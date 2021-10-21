@@ -16,6 +16,16 @@ describe('It validates authentication redirects', () => {
     cy.createUser(username, email, password)
   })
 
+  beforeEach(() => {
+    // deauthenticate the user and reload the page to update the CSRF token
+    cy.clearCookies()
+    cy.reload()
+
+    cy.visit('/login')
+    cy.signIn(username, password)
+    cy.get('[data-cy=user-menu]')
+  })
+
   it("should redirect unauthenticated users to '/login' when accessing requireSignIn page", () => {
     // Clear the cookies to make sure the user isn't authenticated
     cy.clearCookies()
