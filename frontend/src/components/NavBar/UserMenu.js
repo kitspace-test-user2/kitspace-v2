@@ -21,8 +21,8 @@ export const UserDropDownMenu = () => {
             <Image
               className={styles.userImage}
               alt="avatar"
-              width={40}
-              height={30}
+              width={35}
+              height={35}
               src={user.avatar_url}
               objectFit="scale-down"
             />
