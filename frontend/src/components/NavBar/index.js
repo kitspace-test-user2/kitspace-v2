@@ -35,14 +35,14 @@ const Logo = forwardRef(function LogoWithRef({ onClick, href }, ref) {
    * To get around this the image is wrapped in `a` tag with `forwardRef`.
   */
   return (
-    <a style={{ display: 'flex' }} href={href} onClick={onClick} ref={ref}>
+    <a ref={ref} href={href} style={{ display: 'flex' }} onClick={onClick}>
       <Image
-        width={160}
+        alt="logo"
+        className={styles.logoImg}
         height={46}
         objectFit="scale-down"
-        className={styles.logoImg}
         src="/static/logo.svg"
-        alt="logo"
+        width={160}
       />
     </a>
   )
@@ -53,7 +53,7 @@ const BigBar = ({ isProjectRoute, isSubmitRoute }) => (
   <>
     <div className={styles.bigSiteMenu}>
       <Menu inverted pointing secondary>
-        <Link href="/" passHref>
+        <Link passHref href="/">
           <Logo />
         </Link>
         <SiteMenuItems isProjectRoute={isProjectRoute} />
@@ -72,19 +72,19 @@ const BigBar = ({ isProjectRoute, isSubmitRoute }) => (
 const SmallBar = ({ isProjectRoute, isSubmitRoute }) => (
   /* This is the Navbar render on small screens */
   <div className={styles.smallMenu}>
-    <Link href="/" passHref>
+    <Link passHref href="/">
       <Logo />
     </Link>
     <Popup
+      basic
+      inverted
+      on="click"
+      position="bottom right"
       trigger={
-        <Button icon size="large" basic inverted>
+        <Button basic icon inverted size="large">
           <Icon inverted name="bars" />
         </Button>
       }
-      on="click"
-      position="bottom right"
-      inverted
-      basic
     >
       <Menu inverted vertical>
         {isSubmitRoute ? null : <AddProjectButton />}
@@ -108,10 +108,10 @@ const AddProjectButton = () => {
     <>
       <Menu.Item>
         <Button
-          id="add_project"
           icon
-          labelPosition="left"
           color="green"
+          id="add_project"
+          labelPosition="left"
           onClick={onClick}
         >
           <Icon name="plus" />
@@ -127,20 +127,20 @@ const SiteMenuItems = ({ isProjectRoute }) => {
 
   return (
     <>
-      <Menu.Item as="a" href="/" active={isProjectRoute}>
+      <Menu.Item active={isProjectRoute} as="a" href="/">
         Projects
       </Menu.Item>
-      <Menu.Item as="a" href="/bom-builder" active={pathname === '/bom-builder/'}>
+      <Menu.Item active={pathname === '/bom-builder/'} as="a" href="/bom-builder">
         BOM Builder
       </Menu.Item>
-      <Menu.Item as="a" href="/1-click-bom" active={pathname === '/1-click-bom/'}>
+      <Menu.Item active={pathname === '/1-click-bom/'} as="a" href="/1-click-bom">
         1-click BOM
       </Menu.Item>
       <Menu.Item className={styles.SearchBarContainer}>
         <SearchBar />
       </Menu.Item>
       {/* Align menu items with the search bar vertically. */}
-      <style jsx global>{`
+      <style global jsx>{`
         #nav div .menu :is(a, div).item {
           align-self: center;
         }
@@ -176,9 +176,12 @@ const SocialMenuItems = () => (
 
 const ContactMenu = () => (
   <Popup
+    color="blue"
+    on="click"
+    position="bottom right"
     trigger={
       <Menu.Item className="contact-button">
-        <Button labelPosition="right" icon color="blue">
+        <Button icon color="blue" labelPosition="right">
           <Icon inverted name="comments" />
           {/* force the loading of brand-icons before the menu is visible */}
           <Icon className={styles.icon} name="twitter" />
@@ -186,9 +189,6 @@ const ContactMenu = () => (
         </Button>
       </Menu.Item>
     }
-    on="click"
-    position="bottom right"
-    color="blue"
   >
     <Menu secondary vertical>
       <SocialMenuItems />
@@ -222,7 +222,7 @@ const LoginButton = () => {
 
   return (
     <Menu.Item>
-      <Button id="login" color="green" onClick={onClick}>
+      <Button color="green" id="login" onClick={onClick}>
         Log in
       </Button>
     </Menu.Item>
@@ -241,7 +241,7 @@ const LogoutButton = () => {
 
   return (
     <Menu.Item>
-      <Button data-cy="logout-button" id="logout" color="red" onClick={onClick}>
+      <Button color="red" data-cy="logout-button" id="logout" onClick={onClick}>
         Log out
       </Button>
     </Menu.Item>

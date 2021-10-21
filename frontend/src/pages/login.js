@@ -32,10 +32,11 @@ const Login = () => {
   }, [query])
 
   return (
-    <Page title="login" requireSignOut>
+    <Page requireSignOut title="login">
       <Grid style={{ maxWidth: '500px', margin: 'auto' }} verticalAlign="middle">
         <Grid.Column>
           <Tab
+            defaultActiveIndex={openPane}
             panes={[
               {
                 menuItem: 'Sign up',
@@ -50,7 +51,6 @@ const Login = () => {
                 },
               },
             ]}
-            defaultActiveIndex={openPane}
           />
         </Grid.Column>
       </Grid>
@@ -114,26 +114,26 @@ const SignInForm = () => {
             fluid
             required
             control={Input}
-            label="Username or Email"
-            placeholder="Username or Email"
-            name="username"
-            value={form.username || ''}
-            onChange={onChange}
-            onBlur={onBlur}
             error={formatErrorPrompt('username')}
+            label="Username or Email"
+            name="username"
+            placeholder="Username or Email"
+            value={form.username || ''}
+            onBlur={onBlur}
+            onChange={onChange}
           />
           <Form.Field
             fluid
             required
             control={Input}
+            error={formatErrorPrompt('password')}
             label="Password"
+            name="password"
             placeholder="Password"
             type="password"
-            name="password"
             value={form.password || ''}
-            onChange={onChange}
             onBlur={onBlur}
-            error={formatErrorPrompt('password')}
+            onChange={onChange}
           />
           <Form.Field
             control={Checkbox}
@@ -143,12 +143,12 @@ const SignInForm = () => {
           />
           <Form.Field
             fluid
-            control={Button}
-            content="Login"
             color="green"
+            content="Login"
+            control={Button}
+            disabled={!isValid}
             size="large"
             onClick={submit}
-            disabled={!isValid}
           />
         </Segment>
         <Segment>
@@ -230,47 +230,47 @@ const SignUpForm = () => {
             fluid
             required
             control={Input}
-            label="Username"
-            placeholder="Username"
-            name="username"
-            value={form.username || ''}
-            onChange={onChange}
-            onBlur={onBlur}
             error={formatErrorPrompt('username')}
-          />
-          <Form.Field
-            fluid
-            required
-            control={Input}
-            label="Email"
-            placeholder="Email"
-            name="email"
-            value={form.email || ''}
-            onChange={onChange}
+            label="Username"
+            name="username"
+            placeholder="Username"
+            value={form.username || ''}
             onBlur={onBlur}
-            error={formatErrorPrompt('email')}
+            onChange={onChange}
           />
           <Form.Field
             fluid
             required
             control={Input}
+            error={formatErrorPrompt('email')}
+            label="Email"
+            name="email"
+            placeholder="Email"
+            value={form.email || ''}
+            onBlur={onBlur}
+            onChange={onChange}
+          />
+          <Form.Field
+            fluid
+            required
+            control={Input}
+            error={formatErrorPrompt('password')}
             label="Password"
+            name="password"
             placeholder="Password"
             type="password"
-            name="password"
             value={form.password || ''}
-            onChange={onChange}
             onBlur={onBlur}
-            error={formatErrorPrompt('password')}
+            onChange={onChange}
           />
           <Form.Field
             fluid
-            control={Button}
-            content="Sign up"
             color="green"
+            content="Sign up"
+            control={Button}
+            disabled={!isValid}
             size="large"
             onClick={submit}
-            disabled={!isValid}
           />
         </Segment>
         <Segment>
