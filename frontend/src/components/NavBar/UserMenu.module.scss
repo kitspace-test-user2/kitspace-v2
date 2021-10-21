@@ -17,3 +17,19 @@
   display: flex;
   align-items: center;
 }
+
+.userDropDownMenuContainer:hover {
+  text-decoration: none;
+}
+.userDropDownMenuPopup {
+  // Make the drop-down menu drops from the arrow icon
+  transform: translate(8px, -5px) !important;
+}
+
+.userDropDownMenuPopup *:hover {
+  text-decoration: none;
+}
+
+.userImage {
+  border-radius: 20%;
+}
