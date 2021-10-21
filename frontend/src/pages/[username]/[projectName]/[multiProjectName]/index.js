@@ -11,6 +11,7 @@ import {
 } from '@utils/projectPage'
 import SharedProjectPage from '@components/SharedProjectPage'
 import ErrorPage from '@pages/_error'
+import { bool } from 'prop-types'
 
 const MultiProjectPage = props =>
   props.notFound ? <ErrorPage statusCode={404} /> : <SharedProjectPage {...props} />
@@ -73,7 +74,7 @@ MultiProjectPage.getInitialProps = async ({ asPath, query, req }) => {
       isSynced: repo?.mirror,
       // Whether the project were empty or not at the time of requesting the this page from the server.
       isEmpty: repo?.empty,
-      user: username,
+      username,
       projectName: multiProjectName,
       isNew: query.create === 'true',
       gerberInfoExists,
@@ -88,6 +89,14 @@ MultiProjectPage.getInitialProps = async ({ asPath, query, req }) => {
   }
 
   return { notFound: true }
+}
+
+MultiProjectPage.propTypes = {
+  notFound: bool,
+}
+
+MultiProjectPage.defaultProps = {
+  notFound: false,
 }
 
 export default MultiProjectPage

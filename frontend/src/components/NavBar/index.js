@@ -25,6 +25,7 @@ const NavBar = () => {
   )
 }
 
+// eslint-disable-next-line react/prop-types
 const Logo = forwardRef(function LogoWithRef({ onClick, href }, ref) {
   /*
    TODO: FIXME when there's a better way(w/o forwardRef) to wrap a functional component with `Link`.
