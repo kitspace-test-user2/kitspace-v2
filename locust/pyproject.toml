@@ -1,0 +1,22 @@
+[project]
+name = "locust-tests"
+version = "0.1.0"
+description = "Stress testing for Kitspace"
+authors = [
+    {name = "AbdulrhmnGhanem", email = "abdoghanem160@gmail.com"},
+]
+dependencies = [
+    "locust>=2.5.1",
+]
+requires-python = ">=3.9"
+license = {text = "MIT"}
+
+[project.urls]
+homepage = "https://github.com/kitspace/kitspace-v2"
+
+[tool]
+[tool.pdm]
+
+[build-system]
+requires = ["pdm-pep517"]
+build-backend = "pdm.pep517.api"

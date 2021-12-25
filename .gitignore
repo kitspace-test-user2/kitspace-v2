@@ -12,4 +12,6 @@ frontend/cypress/screenshots
 frontend/cypress/fixtures/auto-gen
 
 #python
+.pdm.toml
+__pypackages__/
 __pycache__/
