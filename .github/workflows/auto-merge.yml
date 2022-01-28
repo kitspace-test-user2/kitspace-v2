@@ -1,0 +1,21 @@
+name: auto-merge
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo '${{ github.event.pull_request.state }}'
+      - run: echo '${{ github.event.pull_request.draft }}'
+      - uses: actions/checkout@v2
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: kaspar-dev
+          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
