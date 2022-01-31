@@ -1,6 +1,11 @@
 name: Docker
 
-on: [push]
+on:
+  push: [master, abdo-dev, kaspar-dev, review]
+  # using "pull_request_target" instead of "pull_request" makes this work with
+  # external pull requests (incl. dependabot) it does open up our staging
+  # environment and package repo to external contributors but it seems like a manageable risk
+  pull_request: {}
 jobs:
   build:
     name: Build images
@@ -10,6 +15,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           submodules: 'recursive'
           # 0 means fetch all commits, which we need for "review" branch deploy
           # reporting
