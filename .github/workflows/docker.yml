@@ -1,11 +1,6 @@
 name: Docker
 
-on:
-  push: [master, abdo-dev, kaspar-dev, review]
-  # using "pull_request_target" instead of "pull_request" makes this work with
-  # external pull requests (incl. dependabot) it does open up our staging
-  # environment and package repo to external contributors but it seems like a manageable risk
-  pull_request: {}
+on: [push]
 jobs:
   build:
     name: Build images
