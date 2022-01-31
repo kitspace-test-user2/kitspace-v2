@@ -11,11 +11,11 @@ on:
     branches: [master]
 jobs:
   build:
-    if: ${{ github.event_name == 'push' || github.event.pull_request.author_association == 'OWNER' || github.event.pull_request.author_association == 'COLLABORATOR' }}
     name: Build images
     runs-on: ubuntu-20.04
 
     steps:
+      - run: echo '${{ toJSON(github.event.pull_request) }}'
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
